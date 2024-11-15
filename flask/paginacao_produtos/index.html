@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Lista de Produtos</h1>
+    <!--Inicio da lista de produtos-->
+    <ul> 
+        {% for produto in produtos %} <!--Gera a lista de produtos-->
+            <li>
+                {{ produto.nome }} <!--Exibe o nome dos produtos-->
+                <!-- Botão para abrir o modal -->
+                <a href="#" class="botao" onclick="verDetalhes({{ produto.id }})">Ver Detalhes</a>
+                <!-- chama a função do js 'verDetalhes' qnd clicar no botão, passando o id para procurar os dados por AJAX -->
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Navegação de páginas -->
+    <div class="pagination">
+        {% if anterior %} <!-- verifica se tem uma pág anterior -->
+            <a href="{{ url_for('lista_produtos', pagina=pagina-1) }}" class="botao">Anterior</a>
+        {% endif %}
+        {% if proxima %} <!-- verifica se tem uma prox pág -->
+            <a href="{{ url_for('lista_produtos', pagina=pagina+1) }}" class="botao">Próxima</a>
+        {% endif %}
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal"> <!-- Modal: caixa de diálogo inicialmente oculta -->
+        <div class="modal-conteudo">
+            <h2 id="modal-nome"></h2> <!-- titulo do modal --> 
+            <p id="modal-descricao"></p> <!-- descrição do modal -->
+            <a href="#" class="botao fechar" onclick="fecharModal()">Fechar</a> <!-- botão p fechar o modal -->
+        </div>
+    </div>
+
+    <!-- Script p abrir e fechar o modal e fzr a requisição AJAX -->
+    <script>
+        // Função para abrir o modal e carregar os detalhes via AJAX
+        function verDetalhes(id) {
+        //Qnd o botão "Ver Detalhes" é clicado, a função verDetalhes(id) é chamada com o id do produto
+            // Requisição AJAX para pegar os dados do produto
+            fetch(`/produto/${id}`) // envia uma requisição para a rota /produto/{id} no servidor
+                .then(response => response.json())
+                .then(data => {
+                    if (data.erro) {
+                        alert(data.erro);
+                    } else {
+                        // Atualiza o conteúdo do modal com os dados do produto
+                        document.getElementById('modal-nome').textContent = data.nome;
+                        document.getElementById('modal-descricao').textContent = data.descricao;
+                        // se der td certo o conteudo do modal é atualizado c os dados dos produtos
+                        document.getElementById('modal').style.display = 'flex'; // Exibe o modal
+                    }
+                })
+                .catch(error => alert('Erro ao carregar os detalhes do produto.')); //em caso de erro, exibirá essa msg
+        }
+
+        // Função para fechar o modal
+        function fecharModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

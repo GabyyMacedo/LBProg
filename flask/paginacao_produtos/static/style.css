@@ -1,0 +1,84 @@
+/* Estilos gerais */
+body { 
+    font-family: Arial, sans-serif;
+    padding: 20px; /* Espaço interno em todos os lados da pag */
+}
+
+h1 {
+    text-align: center; /* Centraliza na pag */
+}
+
+/* Lista de produtos */
+ul {
+    padding: 0; /*Remove o espaço interno da lista (padding) para garantir que ela fique alinhada com outros elementos.*/
+}
+
+li {
+    margin: 10px 0; /* Addd um espaçamento de 10 pixels acima e abaixo de cada item da lista */
+}
+
+/* Botões */
+.botao {
+    padding: 10px 15px;  /* Define o espaço interno do botão (10 pixels acima e abaixo, 15 pixels à esquerda e à direita) */
+    background-color: #adadad; /* cor de fundo do botão */
+    color: black; /* cor do texto no botão */
+    text-decoration: none; /* remove o sublinhado padrão dos links */
+    border-radius: 5px; /* arrendonda as bordas */
+    font-size: 14px;
+}
+
+.botao:hover { /* aparencia do botão qnd passa o mouse em cima */
+    background-color: #636363;
+}
+
+/* Paginação */
+.pagination {
+    text-align: center; /* Centraliza os itens dentro do contêiner de paginação */
+    margin-top: 20px; /* Add um espaçamento de 20 pixels acima da área de paginação */
+}
+
+.pagination a { /* links de navegação de páginas */
+    padding: 10px 15px; /* espaço interno do botão */
+    margin: 0 5px; /* add um espaçamento horizontal de 5 pixels entre os links de paginação */
+    background-color: #adadad;
+    color: black; 
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #636363;
+}
+
+/* Estilo do Modal */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* O modal fica fixo na tela, ou seja, mesmo que a pág role, ele não se moverá */
+    top: 0;
+    left: 0;
+    /*Coloca o modal no topo e na esquerda da tela*/
+    width: 100%; /* altura */
+    height: 100%; /* largura */
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center; 
+    align-items: center;
+    /* centraliza o conteúdo do modal (horizontal e verticalmente) */
+}
+
+.modal-conteudo {
+    background-color: white;
+    padding: 20px; /* add espaço interno ao redor do conteudo do modal */
+    border-radius: 10px;
+    text-align: center; /* centraliza o texto */
+    max-width: 500px; /* largura maxima */
+    width: 100%; /* ocupa toda a largura disponivel nos 500px */
+}
+
+/* Botão de Fechar */
+.fechar {
+    background-color: #adadad;
+}
+
+.fechar:hover {
+    background-color: #636363;
+}
