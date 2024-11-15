@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade de Recomposição</title>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #b7f0ea;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #94f0e5;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .inputs {
+      bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+
+    .button {
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #032622;
+      background-color: #1d9a8c;
+      border: none;
+      border-radius: 4px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background-color: #0e6258;
+    }
+
+    #resultado {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Atividade de Recomposição da Gabrielly L. Macedo - SP3115763</h1>
+    <div class="inputs">
+      <br><label><b>Desenvolvedor:</b> {{ desenv }}</label>
+
+      <br><label><b>Turma:</b> {{ turma }}</label>
+
+      <br><label><b>Professor:</b> {{ prof }}</label>
+
+      <br><label><b>Data do Desenvolvimento da Atividade:</b> {{ data }}</label>
+
+      <br><label><b>Nota de Dificuldade desta Atividade (1-10):</b> {{ dific }}</label>
+
+      <br><label><b>Está confiante para a Prova?</b> {{ confiante }}</label> 
+
+      <br> 
+
+      <div>
+        <a href="{{ url_for('aluno.index') }}" style="display: inline-block; width: 100%; padding: 10px; font-size: 16px; color: #032622; background-color: #1d9a8c; border: none; border-radius: 4px; text-align: center; text-decoration: none; cursor: pointer; transition: background-color 0.3s ease;">Voltar ao formulário</a>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
