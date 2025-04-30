@@ -21,9 +21,10 @@ public class Jogador {
 
     @Override
     public String toString() {
-        String resultado = "\nJogador: " + this.nome;
+//        String resultado = "\nJogador: " + this.nome;
+        String resultado = "A mão de jogador é:";
 
-        resultado += "\n A mão de jogador é:";
+//        resultado += "\n A mão de jogador é:";
 
         for(Carta carta : this.mao){
             resultado += "\n- " + carta.toString();

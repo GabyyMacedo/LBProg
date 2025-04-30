@@ -5,6 +5,7 @@ import br.edu.ifsp.spo.java.cards.itens.Carta;
 import br.edu.ifsp.spo.java.cards.regras.Pontuador;
 import br.edu.ifsp.spo.java.cards.ui.JogoUI;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Jogo {
@@ -42,14 +43,25 @@ public class Jogo {
 //            System.out.println("Jogo cancelado.");
 //        }
     }
+    public void play(){
+        Optional<Jogador> talvezVencedor = Optional.empty();
+        do {
+            rodadaDoJogador(this.jogador1);
+            rodadaDoJogador(this.jogador2);
+        }
+    }
 
     private void turno(Jogador jogador) {
-        System.out.println("===Vez de jogador: " + jogador.getNome() + " ===");
+//        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        System.out.println("\n\n");
+
+        System.out.println("===Vez de jogador " + jogador.getNome() + " ===");
         Scanner sc = new Scanner(System.in);
         int resposta;
 
         do {
-            System.out.println("Cartas: " + jogador);
+//            System.out.println("Cartas: " + jogador);
+            System.out.println(jogador);
 //            System.out.println("Cartas de " + jogador.getNome() + ": " + jogador);
             System.out.println("Pontuação: " + pontuador.verificarPontuacao(jogador.getMao()));
             System.out.println("Você deseja comprar mais uma carta?");
@@ -70,15 +82,15 @@ public class Jogo {
 
     }
 
-    @Override
-    public String toString() {
-        String resultado = "===Jogo de Baralho Genérico===\n";
-        resultado += "\nJogador 1: " + jogador1;
-        resultado += "\nPontuação Jogador 1: " + pontuador.verificarPontuacao(jogador1.getMao());
-        resultado += "\n\nJogador 2: " + jogador2;
-        resultado += "\nPontuação Jogador 2: " + pontuador.verificarPontuacao(jogador2.getMao());
-        return resultado;
-    }
+//    @Override
+//    public String toString() {
+//        String resultado = "===Jogo de Baralho Genérico===\n";
+//        resultado += "\nJogador 1: " + jogador1;
+//        resultado += "\nPontuação Jogador 1: " + pontuador.verificarPontuacao(jogador1.getMao());
+//        resultado += "\n\nJogador 2: " + jogador2;
+//        resultado += "\nPontuação Jogador 2: " + pontuador.verificarPontuacao(jogador2.getMao());
+//        return resultado;
+//    }
 
     public void jogar() {
         turno(jogador1);
@@ -88,33 +100,32 @@ public class Jogo {
         int pontuacao2 = pontuador.verificarPontuacao(jogador2.getMao());
 
         System.out.println("\n=== RESULTADO FINAL ===");
-        System.out.println("Pontuação do " + jogador1.getNome() + ": " + pontuacao1);
-        System.out.println("Pontuação do " + jogador2.getNome() + ": " + pontuacao2);
-
+//        System.out.println("Pontuação de " + jogador1.getNome() + ": " + pontuacao1);
+//        System.out.println("Pontuação de " + jogador2.getNome() + ": " + pontuacao2);
 
         if (pontuacao1 == 21 && pontuacao2 == 21) { //reinicia
             System.out.println("EMPATE! AMBOS FIZERAM 21 PONTOS. O JOGO SERÁ REINICIADO");
             jogar(); //reinicia
 
         } else if (pontuacao1 == 21) {//alguem ganhou
-            System.out.println("JOGADOR 1:" + jogador1.getNome() + "VENCEU COM 21 PONTOS");
+            System.out.println("JOGADOR " + jogador1.getNome() + "VENCEU COM 21 PONTOS");
 
         } else if (pontuacao2 == 21) {
-            System.out.println("JOGADOR 2:" + jogador2.getNome() + "VENCEU COM 21 PONTOS");
+            System.out.println("JOGADOR " + jogador2.getNome() + " VENCEU COM 21 PONTOS");
 
         } else if (pontuacao1 > 21 && pontuacao2 <= 21) { //Se um jogador tiver mais que 21: o outro jogador ganhou
-            System.out.println("JOGADOR 1:" + jogador1.getNome() + "PERDEU COM" + pontuacao1 + "PONTOS");
-            System.out.println("JOGADOR 2:" + jogador2.getNome() + "VENCEU COM" + pontuacao2 + "PONTOS");
+            System.out.println("JOGADOR " + jogador1.getNome() + " PERDEU COM " + pontuacao1 + " PONTOS");
+            System.out.println("JOGADOR " + jogador2.getNome() + " VENCEU COM " + pontuacao2 + " PONTOS");
 
         } else if (pontuacao2 > 21 && pontuacao1 <= 21) { //Se um jogador tiver mais que 21: o outro jogador ganhou
-            System.out.println("JOGADOR 1:" + jogador1.getNome() + "VENCEU COM" + pontuacao1 + "PONTOS");
-            System.out.println("JOGADOR 2:" + jogador2.getNome() + "PERDEU COM" + pontuacao2 + "PONTOS");
+            System.out.println("JOGADOR " + jogador1.getNome() + " VENCEU COM " + pontuacao1 + " PONTOS");
+            System.out.println("JOGADOR " + jogador2.getNome() + " PERDEU COM " + pontuacao2 + " PONTOS");
 
         } else if (pontuacao1 > pontuacao2 && pontuacao1 < 21) { //mais proximo(1) ganha
-            System.out.println("JOGADOR 1:" + jogador1.getNome() + "VENCEU. COM" + pontuacao1 + "PONTOS, FOI QUEM CHEGOU MAIS PERTO DE 21");
+            System.out.println("JOGADOR " + jogador1.getNome() + " VENCEU. COM " + pontuacao1 + " PONTOS, FOI QUEM CHEGOU MAIS PERTO DE 21");
 
         } else if (pontuacao2 > pontuacao1 && pontuacao2 < 21) { //mais proximo(2) ganha
-            System.out.println("JOGADOR 2:" + jogador2.getNome() + "VENCEU. COM" + pontuacao2 + "PONTOS, FOI QUEM CHEGOU MAIS PERTO DE 21");
+            System.out.println("JOGADOR " + jogador2.getNome() + " VENCEU. COM " + pontuacao2 + " PONTOS, FOI QUEM CHEGOU MAIS PERTO DE 21");
 
         } else if (pontuacao2 == pontuacao1 && pontuacao2 < 21 ) { //mais proximo(2) ganha
             System.out.println("EMPATE! AMBOS FICARAM COM" + pontuacao1 + " PONTOS. O JOGO SERÁ REINICIADO.");
